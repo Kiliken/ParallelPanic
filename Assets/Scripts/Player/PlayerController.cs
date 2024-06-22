@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public float groundDrag;
     public float rotationSpeed;
+    public string horizontalAxis;
+    public string verticalAxis;
     
 
     Rigidbody rb;
@@ -45,8 +48,8 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerInput()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+        horizontalInput = Input.GetAxisRaw(horizontalAxis);
+        verticalInput = Input.GetAxisRaw(verticalAxis);
 
 
     }
