@@ -37,7 +37,10 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
-        RotatePlayer();
+        if (moveDirection != Vector3.zero)
+        {
+            RotatePlayer();
+        }
     }
 
     private void PlayerInput()
@@ -69,12 +72,9 @@ public class PlayerController : MonoBehaviour
 
     private void RotatePlayer()
     {
-        /*
-        float angle = Mathf.Atan2(moveDirection.z, moveDirection.y);
-        Quaternion rotation = Quaternion.AngleAxis(angle, orientation.forward);
-        Debug.Log(rotation);
-        playerSprite.transform.rotation = rotation;
-        */
+        float angle = Mathf.Atan2(horizontalInput, verticalInput);
+        angle = angle * Mathf.Rad2Deg;
+        playerSprite.transform.eulerAngles = new Vector3(0, angle, 0);
     }
 
 }
