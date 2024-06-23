@@ -80,4 +80,5 @@ public class PlayerController : MonoBehaviour
         playerSprite.transform.eulerAngles = new Vector3(0, angle, 0);
     }
 
+
 }
