@@ -23,6 +23,23 @@ public class PlayerController : MonoBehaviour
 
     Vector3 moveDirection;
 
+    private bool _moveSlowed = false;
+    public bool moveSlowed { get{
+        return _moveSlowed;
+    } set{
+        _moveSlowed = value;
+        if(_moveSlowed == true){
+            moveSpeed = moveSpeedSlow;
+        }
+        else{
+            moveSpeed = moveSpeedNormal;
+        }
+    }}
+    public float moveSlowedTime = 5f;
+    private float moveSlowedTimer = 0f;
+    public float moveSpeedNormal = 5f;
+    public float moveSpeedSlow = 1f;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -32,9 +49,17 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
+        if(moveSlowed){
+            if(moveSlowedTimer < moveSlowedTime){
+                moveSlowedTimer += Time.deltaTime;
+            }
+            else{
+                moveSlowed = false;
+                moveSlowedTimer = 0;
+            }
+        }
         PlayerInput();
         SpeedControl();
-
     }
 
     private void FixedUpdate()
