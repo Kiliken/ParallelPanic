@@ -22,7 +22,7 @@ public class WallTrap : MonoBehaviour
     private float wallRaisedHeight = 0.5f;
     private float wallLoweredHeight = -0.6f;
     private bool canLowerWall = false;
-    public float lowerTime = 5f;
+    private float lowerTime = 5f;
     private float lowerTimer = 0f;
 
 
@@ -63,6 +63,7 @@ public class WallTrap : MonoBehaviour
                 wall.transform.localPosition += new Vector3(0, wallMoveSpeed * Time.deltaTime, 0);
             }
             else{
+                wall.GetComponent<MeshRenderer>().material = inactiveMat;
                 wallRaised = true;
                 wallRising = false;
             }
@@ -80,10 +81,6 @@ public class WallTrap : MonoBehaviour
 
     public void RaiseWall(){
         wallRising = true;
-        //wall.transform.localPosition = new Vector3(0, wallRaisedHeight, 0);
-        wall.GetComponent<MeshRenderer>().material = inactiveMat;
-        //wallRaised = true;
-        // if a player is on the trap, move them to the either side of the wall
         if(player != null){
             if(Vector3.Distance(player.transform.position, playerPos1.transform.position) < Vector3.Distance(player.transform.position, playerPos2.transform.position)){
                 player.transform.position = playerPos1.transform.position;
@@ -95,7 +92,6 @@ public class WallTrap : MonoBehaviour
     }
 
     public void LowerWall(){
-        //wall.transform.localPosition = new Vector3(0, wallLoweredHeight, 0);
         wallLowering = true;
         wallRaised = false;
         canLowerWall = false;
