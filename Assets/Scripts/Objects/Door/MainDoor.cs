@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BasicDoor : MonoBehaviour
+public class MainDoor : MonoBehaviour
 {
     public Animator doorAnim;
     public Collider doorColl;
     bool open = false;
+    bool unlocked;
     bool collidingPlayer1 = false;
     bool collidingPlayer2 = false;
     Player player;
@@ -30,11 +31,21 @@ public class BasicDoor : MonoBehaviour
         }
         else if (((Input.GetButtonDown("Player1Inter") && collidingPlayer1) || (Input.GetButtonDown("Player2Inter") && collidingPlayer2)) && open == false)
         {
-            //Open Door
-            doorAnim.SetBool("open", true);
-            doorColl.enabled = false;
-            Debug.Log("Open");
-            open = true;
+            if (player.holdingKey && !unlocked)
+            {
+                doorAnim.SetBool("open", true);
+                doorColl.enabled = false;
+                open = true;
+                unlocked = true;
+                player.holdingKey = false;
+            }
+            else if (unlocked)
+            {
+                doorAnim.SetBool("open", true);
+                doorColl.enabled = false;
+                open = true;
+            }
+
         }
 
     }
@@ -52,7 +63,9 @@ public class BasicDoor : MonoBehaviour
             {
                 collidingPlayer2 = true;
             }
-            other.gameObject.GetComponent<Player>().canInteract = true;
+            player = other.gameObject.GetComponent<Player>();
+            player.canInteract = true;
+            
         }
     }
 
@@ -62,7 +75,7 @@ public class BasicDoor : MonoBehaviour
         {
             collidingPlayer1 = false;
             collidingPlayer2 = false;
-            other.gameObject.GetComponent<Player>().canInteract = false;
+            player.canInteract = false;
         }
     }
 

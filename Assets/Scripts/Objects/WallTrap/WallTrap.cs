@@ -119,6 +119,7 @@ public class WallTrap : MonoBehaviour
                 collidingPlayer2 = true;
             }
             player = other.gameObject;
+            other.gameObject.GetComponent<Player>().canInteract = true;
         }
     }
 
@@ -127,6 +128,7 @@ public class WallTrap : MonoBehaviour
             collidingPlayer1 = false;
             collidingPlayer2 = false;
             player = null;
+            other.gameObject.GetComponent<Player>().canInteract = false;
         }
     }
 }
