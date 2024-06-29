@@ -16,8 +16,8 @@ public class PlayerController : MonoBehaviour
     
 
     Rigidbody rb;
-    float horizontalInput;
-    float verticalInput;
+    float horizontalInput = 0f;
+    float verticalInput = 0f;
 
     public GameObject playerSprite;
 
@@ -75,6 +75,11 @@ public class PlayerController : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw(horizontalAxis);
         verticalInput = Input.GetAxisRaw(verticalAxis);
+
+        
+
+
+
 
 
     }

@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 
     [Header("UI")]
     public Image ButtonA;
+    public Image Key;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,5 +24,9 @@ public class Player : MonoBehaviour
             ButtonA.gameObject.SetActive(true);
         else
             ButtonA.gameObject.SetActive(false);
+        if (holdingKey)
+            Key.gameObject.SetActive(true);
+        else
+            Key.gameObject.SetActive(false);
     }
 }
