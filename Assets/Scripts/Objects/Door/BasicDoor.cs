@@ -25,16 +25,17 @@ public class BasicDoor : MonoBehaviour
         {
             //Close Door
             doorAnim.SetBool("open", false);
-            doorColl.enabled = true;
+            //doorColl.enabled = true;
             open = false;
         }
         else if (((Input.GetButtonDown("Player1Inter") && collidingPlayer1) || (Input.GetButtonDown("Player2Inter") && collidingPlayer2)) && open == false)
         {
             //Open Door
-            doorAnim.SetBool("open", true);
-            doorColl.enabled = false;
-            Debug.Log("Open");
-            open = true;
+           
+                doorAnim.SetBool("open", true);
+                //doorColl.enabled = false;
+                open = true;
+           
         }
 
     }
@@ -65,6 +66,5 @@ public class BasicDoor : MonoBehaviour
             other.gameObject.GetComponent<Player>().canInteract = false;
         }
     }
-
 
 }
