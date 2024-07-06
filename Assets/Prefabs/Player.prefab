@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 174712999068489942}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.798, z: -1.244}
+  m_LocalPosition: {x: 0, y: 5, z: -1.244}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -226,9 +226,12 @@ MonoBehaviour:
   moveSpeed: 5
   groundDrag: 0.4
   rotationSpeed: 10
-  horizontalAxis: Player2Hor
-  verticalAxis: Player2Ver
+  horizontalAxis: Player1Hor
+  verticalAxis: Player1Ver
   playerSprite: {fileID: 1013153385482204654}
+  moveSlowedTime: 5
+  moveSpeedNormal: 5
+  moveSpeedSlow: 1
 --- !u!114 &5161761369812883193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,6 +245,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdingKey: 0
+  canInteract: 0
+  ButtonA: {fileID: 0}
+  Key: {fileID: 0}
 --- !u!1001 &5867505490139488286
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -292,8 +298,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6873302844058736112, guid: d64d37b48fed77a47b28c20def4073d5, type: 3}
       propertyPath: m_Name
-      value: monster
+      value: PlayerSprite
       objectReference: {fileID: 0}
+    - target: {fileID: 7112936816395857726, guid: d64d37b48fed77a47b28c20def4073d5, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 58e9bce9614c66b499e1d5a8a5c16477, type: 2}
+    - target: {fileID: 8048344763839683832, guid: d64d37b48fed77a47b28c20def4073d5, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -2432090755550338912, guid: 151ddf11b61be534e8c6731d48cb74f6, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
