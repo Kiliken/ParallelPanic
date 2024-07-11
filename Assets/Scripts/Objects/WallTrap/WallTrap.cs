@@ -9,8 +9,8 @@ public class WallTrap : MonoBehaviour
     public GameObject playerPos1;
     public GameObject playerPos2;
     public WallTrap otherTrap;
-    public Material activeMat;
-    public Material inactiveMat;
+    public Mesh activeMesh;
+    public Mesh inactiveMesh;
     GameObject player;
     private bool collidingPlayer1 = false;
     private bool collidingPlayer2 = false;
@@ -19,8 +19,8 @@ public class WallTrap : MonoBehaviour
     private bool wallRising = false;
     private bool wallLowering = false;
     private float wallMoveSpeed = 5f;
-    private float wallRaisedHeight = 0.5f;
-    private float wallLoweredHeight = -0.6f;
+    private float wallRaisedHeight = 0f;
+    private float wallLoweredHeight = -4f;
     private bool canLowerWall = false;
     private float lowerTime = 5f;
     private float lowerTimer = 0f;
@@ -43,7 +43,7 @@ public class WallTrap : MonoBehaviour
                 lowerTimer += Time.deltaTime;
             }
             else{
-                wall.GetComponent<MeshRenderer>().material = activeMat;
+                wall.GetComponent<MeshFilter>().mesh = activeMesh;
                 canLowerWall = true;
                 lowerTimer = 0;
             }
@@ -63,7 +63,7 @@ public class WallTrap : MonoBehaviour
                 wall.transform.localPosition += new Vector3(0, wallMoveSpeed * Time.deltaTime, 0);
             }
             else{
-                wall.GetComponent<MeshRenderer>().material = inactiveMat;
+                wall.GetComponent<MeshFilter>().mesh = inactiveMesh;
                 wallRaised = true;
                 wallRising = false;
             }
