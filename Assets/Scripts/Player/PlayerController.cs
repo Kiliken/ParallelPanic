@@ -35,8 +35,6 @@ public class PlayerController : MonoBehaviour
             moveSpeed = moveSpeedNormal;
         }
     }}
-    public float moveSlowedTime = 5f;
-    private float moveSlowedTimer = 0f;
     public float moveSpeedNormal = 5f;
     public float moveSpeedSlow = 1f;
 
@@ -49,15 +47,6 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
-        if(moveSlowed){
-            if(moveSlowedTimer < moveSlowedTime){
-                moveSlowedTimer += Time.deltaTime;
-            }
-            else{
-                moveSlowed = false;
-                moveSlowedTimer = 0;
-            }
-        }
         PlayerInput();
         SpeedControl();
     }

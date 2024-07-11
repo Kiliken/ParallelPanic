@@ -26,4 +26,11 @@ public class FloorTrap : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerExit(Collider other){
+        if(other.gameObject.CompareTag("Player")){
+            PlayerController p = other.gameObject.GetComponent<PlayerController>();
+            p.moveSlowed = false;
+        }
+    }
 }
