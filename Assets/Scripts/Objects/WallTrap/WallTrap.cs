@@ -52,6 +52,7 @@ public class WallTrap : MonoBehaviour
             if(wallRaised && canLowerWall){
                 LowerWall();
                 otherTrap.RaiseWall();
+                player.GetComponent<Player>().canInteract = false;
             }
         }
     }
@@ -119,7 +120,14 @@ public class WallTrap : MonoBehaviour
                 collidingPlayer2 = true;
             }
             player = other.gameObject;
-            other.gameObject.GetComponent<Player>().canInteract = true;
+        }
+    }
+
+    private void OnTriggerStay(Collider other){
+        if(other.gameObject.CompareTag("Player")){
+            if(wallRaised && canLowerWall){
+                other.gameObject.GetComponent<Player>().canInteract = true;
+            }
         }
     }
 

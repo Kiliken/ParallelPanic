@@ -17,7 +17,7 @@ public class FloorTrapTrigger : MonoBehaviour
     private bool trapLowering = false;
     private float trapMoveSpeed = 5f;
     private float trapRaisedHeight = 0f;
-    private float trapLoweredHeight = -0.03f;
+    private float trapLoweredHeight = -0.5f;
     private bool canLowerTrap = false;
     private float lowerTime = 5f;
     private float lowerTimer = 0f;
@@ -25,7 +25,9 @@ public class FloorTrapTrigger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(mainTrap){
+            setRandom();
+        }
     }
 
     // Update is called once per frame
@@ -45,12 +47,13 @@ public class FloorTrapTrigger : MonoBehaviour
             if(trapRaised && canLowerTrap){
                 LowerTrap();
                 otherTrap.RaiseTrap();
+                player.GetComponent<Player>().canInteract = false;
             }
         }
         
     }
 
-        private void FixedUpdate(){
+    private void FixedUpdate(){
         if(trapRising){
             if(floorTrap.transform.localPosition.y < trapRaisedHeight){
                 floorTrap.transform.localPosition += new Vector3(0, trapMoveSpeed * Time.deltaTime, 0);
@@ -91,6 +94,35 @@ public class FloorTrapTrigger : MonoBehaviour
         else{
             RaiseTrap();
             otherTrap.LowerTrap();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other){
+        if(other.gameObject.CompareTag("Player")){
+            if(other.gameObject.name == "Player1"){
+                collidingPlayer1 = true;
+            }
+            else{
+                collidingPlayer2 = true;
+            }
+            player = other.gameObject;
+        }
+    }
+
+    private void OnTriggerStay(Collider other){
+        if(other.gameObject.CompareTag("Player")){
+            if(trapRaised && canLowerTrap){
+                other.gameObject.GetComponent<Player>().canInteract = true;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other){
+        if(other.gameObject.CompareTag("Player")){
+            collidingPlayer1 = false;
+            collidingPlayer2 = false;
+            player = null;
+            other.gameObject.GetComponent<Player>().canInteract = false;
         }
     }
 }

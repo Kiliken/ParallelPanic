@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7361364982316582714}
   - component: {fileID: 1593972337374756032}
   - component: {fileID: 7466551577626238407}
-  - component: {fileID: 4439900732007290546}
   - component: {fileID: 4925254488738566464}
+  - component: {fileID: 8445136091921946064}
   m_Layer: 0
   m_Name: SlowTrap
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2753415265047224767}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3289902, y: 1.04, z: 0.45549402}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.15, y: 3, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -51,7 +51,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2753415265047224767}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -86,7 +86,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4439900732007290546
+--- !u!114 &4925254488738566464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2753415265047224767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71710f1a93db34499af3068a607984ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorTrap: {fileID: 2905478777241044300}
+  otherTrap: {fileID: 0}
+  activeMesh: {fileID: -2432090755550338912, guid: 63f4e67c5a83a40379ee7fdd01c00902, type: 3}
+  inactiveMesh: {fileID: -2432090755550338912, guid: d316b1189c9624fb09d0fdb7da899162, type: 3}
+  mainTrap: 1
+--- !u!65 &8445136091921946064
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,25 +122,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10, y: 2.220446e-16, z: 10}
+  m_Size: {x: 10, y: 0.02, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4925254488738566464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2753415265047224767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71710f1a93db34499af3068a607984ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  floorTrap: {fileID: 6187838606602730901}
-  otherTrap: {fileID: 0}
-  activeMesh: {fileID: -2432090755550338912, guid: 63f4e67c5a83a40379ee7fdd01c00902, type: 3}
-  inactiveMesh: {fileID: -2432090755550338912, guid: 63f4e67c5a83a40379ee7fdd01c00902, type: 3}
-  mainTrap: 1
 --- !u!1001 &6421842507617648836
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -188,6 +188,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 58e9bce9614c66b499e1d5a8a5c16477, type: 2}
+    - target: {fileID: -6400281290468069383, guid: 63f4e67c5a83a40379ee7fdd01c00902, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -2432090755550338912, guid: 63f4e67c5a83a40379ee7fdd01c00902, type: 3}
     - target: {fileID: 919132149155446097, guid: 63f4e67c5a83a40379ee7fdd01c00902, type: 3}
       propertyPath: m_Name
       value: SlowTrap
@@ -242,11 +246,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4e4a05e08710463e97d47894bdf0615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &6187838606602730901 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 63f4e67c5a83a40379ee7fdd01c00902, type: 3}
-  m_PrefabInstance: {fileID: 6421842507617648836}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6815158726965634863 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 63f4e67c5a83a40379ee7fdd01c00902, type: 3}
