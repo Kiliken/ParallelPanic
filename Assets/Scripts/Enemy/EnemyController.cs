@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     public float triggerDistance;
     bool hasLineOfSight = false;
     public WorldBounds bounds;
+    LayerMask mask = -1;
     
 
     private void Start()
@@ -19,7 +20,7 @@ public class EnemyController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Physics.Raycast(transform.position, (player.transform.position - transform.position), out RaycastHit ray, triggerDistance))
+        if (Physics.Raycast(transform.position, (player.transform.position - transform.position), out RaycastHit ray, triggerDistance, mask, QueryTriggerInteraction.Ignore))
         {
             hasLineOfSight = ray.collider.CompareTag("Player");
             if (hasLineOfSight)
