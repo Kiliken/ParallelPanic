@@ -20,7 +20,7 @@ public class PlayerFootprints : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        distance = Vector3.Distance(playerSprite.position, reflector.position);
+        distance = playerSprite.position.x - reflector.position.x;
         transform.position = reflector.position + (new Vector3(distance * side,playerSprite.position.y,playerSprite.position.z));
         transform.rotation = new Quaternion(playerSprite.rotation.x , playerSprite.rotation.y * -1f, playerSprite.rotation.z, playerSprite.rotation.w);
     }
