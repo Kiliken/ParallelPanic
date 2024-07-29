@@ -5,6 +5,7 @@ using UnityEngine;
 public class Chest : MonoBehaviour
 {
     public Mesh openMesh;
+    public Transform playerSpawnPos;
     // 0 = empty, 1 = key, 2 = trap
     public int chestType = 0;
     private bool opened = false;
@@ -12,9 +13,9 @@ public class Chest : MonoBehaviour
     private bool collidingPlayer2 = false;
     Player player;
     GameObject key;
-    private float showObjTime = 3f;
-    private float showObjTimer = 0f;
-    private bool objShown = false;
+    private float activeTime = 3f;
+    private float activeTimer = 0f;
+    private bool activated = false;
 
 
     // Start is called before the first frame update
@@ -22,6 +23,9 @@ public class Chest : MonoBehaviour
     {
         if(chestType == 1){
             key = gameObject.transform.GetChild(1).gameObject;
+        }
+        else if(chestType == 2){
+            activeTime = 0.5f;
         }
         
     }
@@ -45,18 +49,24 @@ public class Chest : MonoBehaviour
             }
         }
         else{
-            if (chestType == 1 && !objShown){
-                if(showObjTimer < showObjTime){
-                    showObjTimer += Time.deltaTime;
-                    key.transform.Rotate(0f,0f, 120f * Time.deltaTime, Space.Self);
+            if(!activated){
+                if(activeTimer < activeTime){
+                    activeTimer += Time.deltaTime;
+                    if(chestType == 1){
+                        key.transform.Rotate(0f,0f, 120f * Time.deltaTime, Space.Self);
+                    }
                 }
                 else{
-                    key.SetActive(false);
-                    objShown = true;
+                    if(chestType == 1){
+                        key.SetActive(false);
+                    }
+                    else if(chestType == 2){
+                        player.gameObject.transform.position = playerSpawnPos.transform.position;
+                    }
+                    activated = true;
                 }
             }
         }
-        
     }
 
     private void OnTriggerEnter(Collider other){
