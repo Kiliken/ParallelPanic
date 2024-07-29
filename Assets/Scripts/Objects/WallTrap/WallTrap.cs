@@ -6,6 +6,7 @@ using UnityEngine;
 public class WallTrap : MonoBehaviour
 {
     public GameObject wall;
+    public BoxCollider wallCollider;
     public GameObject playerPos1;
     public GameObject playerPos2;
     public WallTrap otherTrap;
@@ -90,12 +91,14 @@ public class WallTrap : MonoBehaviour
                 player.transform.position = playerPos2.transform.position;
             }
         }
+        wallCollider.enabled = true;
     }
 
     public void LowerWall(){
         wallLowering = true;
         wallRaised = false;
         canLowerWall = false;
+        wallCollider.enabled = false;
     }
 
 
