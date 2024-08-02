@@ -7,12 +7,25 @@ public class Chest : MonoBehaviour
     public Mesh openMesh;
     public Transform playerSpawnPos;
     // 0 = empty, 1 = key, 2 = trap
-    public int chestType = 0;
+    [SerializeField] private int chestType = 0;
+    public int ChestType {get{
+        return chestType;
+    } set{
+        switch(value){
+            case 1:
+                key = gameObject.transform.GetChild(1).gameObject;
+                break;
+            case 2:
+                activeTime = 0.5f;
+                break;
+        }
+        chestType = value;
+    }}
     private bool opened = false;
     private bool collidingPlayer1 = false;
     private bool collidingPlayer2 = false;
     Player player;
-    GameObject key;
+    [SerializeField] GameObject key;
     private float activeTime = 3f;
     private float activeTimer = 0f;
     private bool activated = false;
@@ -21,14 +34,15 @@ public class Chest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(chestType == 1){
-            key = gameObject.transform.GetChild(1).gameObject;
-        }
-        else if(chestType == 2){
-            activeTime = 0.5f;
-        }
+        // if(chestType == 1){
+        //     key = gameObject.transform.GetChild(1).gameObject;
+        // }
+        // else if(chestType == 2){
+        //     activeTime = 0.5f;
+        // }
         
     }
+
 
     // Update is called once per frame
     void Update()
@@ -82,7 +96,7 @@ public class Chest : MonoBehaviour
         }
     }
 
-        private void OnTriggerStay(Collider other){
+    private void OnTriggerStay(Collider other){
         if(other.gameObject.CompareTag("Player")){
             if(!opened){
                 player.canInteract = true;
