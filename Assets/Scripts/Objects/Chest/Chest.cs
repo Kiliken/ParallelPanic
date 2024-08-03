@@ -17,6 +17,12 @@ public class Chest : MonoBehaviour
                 break;
             case 2:
                 activeTime = 0.5f;
+                if(gameObject.name == "ChestA"){
+                    playerSpawnPos = GameObject.Find("PlayerSpawn1").transform;
+                }
+                else if(gameObject.name == "ChestB"){
+                    playerSpawnPos = GameObject.Find("PlayerSpawn2").transform;
+                }
                 break;
         }
         chestType = value;
@@ -40,7 +46,6 @@ public class Chest : MonoBehaviour
         // else if(chestType == 2){
         //     activeTime = 0.5f;
         // }
-        
     }
 
 
