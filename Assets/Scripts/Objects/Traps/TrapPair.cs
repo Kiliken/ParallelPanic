@@ -46,20 +46,21 @@ public class TrapPair : MonoBehaviour
 
     private void SetSlowTrap(){
         trapA = Instantiate(slowTrapPrefab, posA.transform.localPosition, Quaternion.identity);
-        trapA.transform.parent = posA.transform;
         trapB = Instantiate(slowTrapPrefab, posB.transform.localPosition, Quaternion.identity);
+        trapA.transform.parent = posA.transform;
         trapB.transform.parent = posB.transform;
+        trapA.name = "SlowTrapA";
+        trapB.name = "SlowTrapB";
 
         trapA.GetComponent<FloorTrapTrigger>().otherTrap = trapB.GetComponent<FloorTrapTrigger>();
         trapB.GetComponent<FloorTrapTrigger>().otherTrap = trapA.GetComponent<FloorTrapTrigger>();
-
         if(Random.Range(0, 2) == 0){
             trapA.GetComponent<FloorTrapTrigger>().LowerTrap();
-            trapB.GetComponent<FloorTrapTrigger>().RaiseTrap();
+            trapB.GetComponent<FloorTrapTrigger>().SetTrap();
         }
         else{
             trapB.GetComponent<FloorTrapTrigger>().LowerTrap();
-            trapA.GetComponent<FloorTrapTrigger>().RaiseTrap();
+            trapA.GetComponent<FloorTrapTrigger>().SetTrap();
         }
     }
 

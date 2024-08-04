@@ -30,9 +30,9 @@ public class WallTrap : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(mainTrap){
-            setRandom();
-        }
+        // if(mainTrap){
+        //     setRandom();
+        // }
     }
 
 

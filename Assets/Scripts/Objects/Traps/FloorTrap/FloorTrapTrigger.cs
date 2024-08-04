@@ -47,7 +47,7 @@ public class FloorTrapTrigger : MonoBehaviour
         if((Input.GetButtonDown("Player1Inter") && collidingPlayer1) || (Input.GetButtonDown("Player2Inter") && collidingPlayer2)){
             if(trapRaised && canLowerTrap){
                 LowerTrap();
-                otherTrap.RaiseTrap();
+                otherTrap.SetTrap();
                 player.GetComponent<Player>().canInteract = false;
             }
         }
@@ -76,7 +76,7 @@ public class FloorTrapTrigger : MonoBehaviour
     }
 
 
-    public void RaiseTrap(){
+    public void SetTrap(){
         floorTrap.transform.localPosition = new Vector3(floorTrap.transform.localPosition.x, trapLoweredHeight, floorTrap.transform.localPosition.z);
         trapOnSide = true;
         //trapRising = true;
@@ -89,16 +89,16 @@ public class FloorTrapTrigger : MonoBehaviour
     }
 
 
-    private void setRandom(){
-        if(Random.Range(0, 2) == 0){
-            LowerTrap();
-            otherTrap.RaiseTrap();
-        }
-        else{
-            RaiseTrap();
-            otherTrap.LowerTrap();
-        }
-    }
+    // private void setRandom(){
+    //     if(Random.Range(0, 2) == 0){
+    //         LowerTrap();
+    //         otherTrap.SetTrap();
+    //     }
+    //     else{
+    //         SetTrap();
+    //         otherTrap.LowerTrap();
+    //     }
+    // }
 
     private void OnTriggerEnter(Collider other){
         if(other.gameObject.CompareTag("Player")){
