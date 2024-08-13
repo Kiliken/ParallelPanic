@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeedNormal = 5f;
     public float moveSpeedSlow = 1f;
 
+    [SerializeField] private AudioSource footStepAudio;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -57,6 +59,14 @@ public class PlayerController : MonoBehaviour
         if (moveDirection != Vector3.zero)
         {
             RotatePlayer();
+            if(!footStepAudio.isPlaying){
+                footStepAudio.Play();
+            }
+        }
+        else{
+            if(footStepAudio.isPlaying){
+                footStepAudio.Stop();
+            }
         }
     }
 
