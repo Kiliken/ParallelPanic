@@ -6,6 +6,7 @@ public class Chest : MonoBehaviour
 {
     public Mesh openMesh;
     public Transform playerSpawnPos;
+    private ScreenFadeController screenFade;
     // 0 = empty, 1 = key, 2 = trap
     [SerializeField] private int chestType = 0;
     public int ChestType {get{
@@ -19,9 +20,11 @@ public class Chest : MonoBehaviour
                 activeTime = 0.5f;
                 if(gameObject.name == "ChestA"){
                     playerSpawnPos = GameObject.Find("PlayerSpawn1").transform;
+                    screenFade = GameObject.Find("ScreenFade1").GetComponent<ScreenFadeController>();
                 }
                 else if(gameObject.name == "ChestB"){
                     playerSpawnPos = GameObject.Find("PlayerSpawn2").transform;
+                    screenFade = GameObject.Find("ScreenFade2").GetComponent<ScreenFadeController>();
                 }
                 break;
         }
@@ -80,7 +83,8 @@ public class Chest : MonoBehaviour
                         key.SetActive(false);
                     }
                     else if(chestType == 2){
-                        player.gameObject.transform.position = playerSpawnPos.transform.position;
+                        screenFade.FadeOut(false);
+                        //player.gameObject.transform.position = playerSpawnPos.transform.position;
                     }
                     activated = true;
                 }

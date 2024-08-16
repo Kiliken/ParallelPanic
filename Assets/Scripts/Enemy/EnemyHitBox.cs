@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyHitBox : MonoBehaviour
 {
+    public ScreenFadeController screenFade;
     public Transform playerSpawn;
     public Transform enemySpawn;
     public GameObject enemy;
@@ -23,12 +24,13 @@ public class EnemyHitBox : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            screenFade.FadeOut(true);
             audioSource.Play();
             GameObject dp = Instantiate(deathParticle, playerParticle.transform.position, deathParticle.transform.rotation);
             Destroy(dp, 1f);
-            other.transform.position = playerSpawn.position;
-            enemy.transform.position = enemySpawn.position;
-            monster.ResetPath();
+            // other.transform.position = playerSpawn.position;
+            // enemy.transform.position = enemySpawn.position;
+            // monster.ResetPath();
         }
         
     }

@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public float rotationSpeed;
     public string horizontalAxis;
     public string verticalAxis;
+
+    public bool canMove = true;
     
 
     Rigidbody rb;
@@ -38,6 +40,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeedNormal = 5f;
     public float moveSpeedSlow = 1f;
 
+    [SerializeField] private Transform playerSpawn;
     [SerializeField] private AudioSource footStepAudio;
 
     void Start()
@@ -74,21 +77,14 @@ public class PlayerController : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw(horizontalAxis);
         verticalInput = Input.GetAxisRaw(verticalAxis);
-
-        
-
-
-
-
-
     }
 
     private void MovePlayer() 
-    { 
-        moveDirection = orientation.forward* verticalInput + orientation.right * horizontalInput;
-
-        rb.AddForce(moveDirection.normalized * moveSpeed *10f, ForceMode.Force);
-
+    {
+        if(canMove){
+            moveDirection = orientation.forward* verticalInput + orientation.right * horizontalInput;
+            rb.AddForce(moveDirection.normalized * moveSpeed *10f, ForceMode.Force);
+        }
     }
 
     private void SpeedControl()
@@ -109,5 +105,7 @@ public class PlayerController : MonoBehaviour
         playerSprite.transform.eulerAngles = new Vector3(0, angle, 0);
     }
 
-
+    public void Respawn(){
+        transform.position = playerSpawn.position;
+    }
 }
