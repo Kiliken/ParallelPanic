@@ -11,16 +11,19 @@ public class EnemyHitBox : MonoBehaviour
     [SerializeField] GameObject playerParticle;
     [SerializeField] GameObject deathParticle;
     NavMeshAgent monster;
+    AudioSource audioSource;
 
     private void Start()
     {
         monster = GetComponentInParent<NavMeshAgent>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
+            audioSource.Play();
             GameObject dp = Instantiate(deathParticle, playerParticle.transform.position, deathParticle.transform.rotation);
             Destroy(dp, 1f);
             other.transform.position = playerSpawn.position;

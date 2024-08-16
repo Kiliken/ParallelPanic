@@ -11,6 +11,8 @@ public class EnemyController : MonoBehaviour
     bool hasLineOfSight = false;
     public WorldBounds bounds;
     LayerMask mask = -1;
+
+    public float playerDistance;
     
 
     private void Start()
@@ -61,8 +63,8 @@ public class EnemyController : MonoBehaviour
             }*/
         }
         
-            
-
+        playerDistance = Vector3.Distance(transform.position, player.transform.position);
+        //Debug.Log(System.Math.Round((31 - playerDistance)/31, 2));
     }
 
 }
