@@ -38,17 +38,15 @@ public class Chest : MonoBehaviour
     private float activeTime = 3f;
     private float activeTimer = 0f;
     private bool activated = false;
+    [SerializeField] private List<AudioClip> chestSFX = new List<AudioClip>();
+    AudioSource audioSource;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        // if(chestType == 1){
-        //     key = gameObject.transform.GetChild(1).gameObject;
-        // }
-        // else if(chestType == 2){
-        //     activeTime = 0.5f;
-        // }
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -64,7 +62,15 @@ public class Chest : MonoBehaviour
                         player.GetComponent<Player>().holdingKey = true;
                         //Destroy(gameObject);
                         key.SetActive(true);
+                        // KEY SFX
+                        audioSource.clip = chestSFX[0];
+                        audioSource.Play();
                     }
+                }
+                if(chestType == 2){
+                    // WARP SFX
+                    audioSource.clip = chestSFX[1];
+                    audioSource.Play();
                 }
                 player.canInteract = false;
                 opened = true;

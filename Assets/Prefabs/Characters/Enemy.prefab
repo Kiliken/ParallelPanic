@@ -260,6 +260,8 @@ MonoBehaviour:
   triggerDistance: 5
   bounds: {fileID: 0}
   playerDistance: 0
+  canMove: 1
+  enemySpawn: {fileID: 0}
 --- !u!1 &7580705052492792720
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,6 +553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 339cc25366743df45841bc5e9c8f6881, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  screenFade: {fileID: 0}
   playerSpawn: {fileID: 0}
   enemySpawn: {fileID: 0}
   enemy: {fileID: 6690238513000443860}
@@ -589,7 +592,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ae0e6807dcbb64561925d0e41d4b7cd6, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.6
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
