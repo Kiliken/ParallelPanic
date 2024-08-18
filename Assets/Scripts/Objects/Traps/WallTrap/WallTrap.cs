@@ -51,11 +51,13 @@ public class WallTrap : MonoBehaviour
                 lowerTimer = 0;
             }
         }
-        if((Input.GetButtonDown("Player1Inter") && collidingPlayer1) || (Input.GetButtonDown("Player2Inter") && collidingPlayer2)){
-            if(wallRaised && canLowerWall){
-                LowerWall();
-                otherTrap.RaiseWall();
-                player.GetComponent<Player>().canInteract = false;
+        if(!GameManager.gamePaused){
+            if((Input.GetButtonDown("Player1Inter") && collidingPlayer1) || (Input.GetButtonDown("Player2Inter") && collidingPlayer2)){
+                if(wallRaised && canLowerWall){
+                    LowerWall();
+                    otherTrap.RaiseWall();
+                    player.GetComponent<Player>().canInteract = false;
+                }
             }
         }
     }

@@ -54,27 +54,30 @@ public class Chest : MonoBehaviour
     void Update()
     {
         if(!opened){
-            if((Input.GetButtonDown("Player1Inter") && collidingPlayer1) || (Input.GetButtonDown("Player2Inter") && collidingPlayer2)){
-                gameObject.transform.GetChild(0).gameObject.GetComponent<MeshFilter>().mesh = openMesh;
-                if(chestType == 1){
-                    if(player.GetComponent<Player>().holdingKey == false){
-                        Debug.Log("Collected Key");
-                        player.GetComponent<Player>().holdingKey = true;
-                        //Destroy(gameObject);
-                        key.SetActive(true);
-                        // KEY SFX
-                        audioSource.clip = chestSFX[0];
+            if(!GameManager.gamePaused){
+                if((Input.GetButtonDown("Player1Inter") && collidingPlayer1) || (Input.GetButtonDown("Player2Inter") && collidingPlayer2)){
+                    gameObject.transform.GetChild(0).gameObject.GetComponent<MeshFilter>().mesh = openMesh;
+                    if(chestType == 1){
+                        if(player.GetComponent<Player>().holdingKey == false){
+                            Debug.Log("Collected Key");
+                            player.GetComponent<Player>().holdingKey = true;
+                            //Destroy(gameObject);
+                            key.SetActive(true);
+                            // KEY SFX
+                            audioSource.clip = chestSFX[0];
+                            audioSource.Play();
+                        }
+                    }
+                    if(chestType == 2){
+                        // WARP SFX
+                        audioSource.clip = chestSFX[1];
                         audioSource.Play();
                     }
+                    player.canInteract = false;
+                    opened = true;
                 }
-                if(chestType == 2){
-                    // WARP SFX
-                    audioSource.clip = chestSFX[1];
-                    audioSource.Play();
-                }
-                player.canInteract = false;
-                opened = true;
             }
+            
         }
         else{
             if(!activated){

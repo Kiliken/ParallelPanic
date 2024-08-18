@@ -22,32 +22,32 @@ public class MainDoor : MonoBehaviour
 
     void Update()
     {
-        if (((Input.GetButtonDown("Player1Inter") && collidingPlayer1) || (Input.GetButtonDown("Player2Inter") && collidingPlayer2)) && open == true)
-        {
-            //Close Door
-            doorAnim.SetBool("open", false);
-            doorColl.enabled = true;
-            open = false;
-        }
-        else if (((Input.GetButtonDown("Player1Inter") && collidingPlayer1) || (Input.GetButtonDown("Player2Inter") && collidingPlayer2)) && open == false)
-        {
-            if (player.holdingKey && !unlocked)
+        if(!GameManager.gamePaused){
+            if (((Input.GetButtonDown("Player1Inter") && collidingPlayer1) || (Input.GetButtonDown("Player2Inter") && collidingPlayer2)) && open == true)
             {
-                doorAnim.SetBool("open", true);
-                doorColl.enabled = false;
-                open = true;
-                unlocked = true;
-                player.holdingKey = false;
+                //Close Door
+                doorAnim.SetBool("open", false);
+                doorColl.enabled = true;
+                open = false;
             }
-            else if (unlocked)
+            else if (((Input.GetButtonDown("Player1Inter") && collidingPlayer1) || (Input.GetButtonDown("Player2Inter") && collidingPlayer2)) && open == false)
             {
-                doorAnim.SetBool("open", true);
-                doorColl.enabled = false;
-                open = true;
+                if (player.holdingKey && !unlocked)
+                {
+                    doorAnim.SetBool("open", true);
+                    doorColl.enabled = false;
+                    open = true;
+                    unlocked = true;
+                    player.holdingKey = false;
+                }
+                else if (unlocked)
+                {
+                    doorAnim.SetBool("open", true);
+                    doorColl.enabled = false;
+                    open = true;
+                }
             }
-
         }
-
     }
 
     private void OnTriggerEnter(Collider other)
