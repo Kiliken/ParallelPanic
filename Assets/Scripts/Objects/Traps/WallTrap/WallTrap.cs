@@ -26,12 +26,16 @@ public class WallTrap : MonoBehaviour
     private float lowerTime = 5f;
     private float lowerTimer = 0f;
     AudioSource audioSource;
+    private bool firstSet = true;   // for audio
 
 
+    void Awake(){
+        audioSource = GetComponent<AudioSource>();
+        
+    }
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         // if(mainTrap){
         //     setRandom();
         // }
@@ -96,7 +100,10 @@ public class WallTrap : MonoBehaviour
             }
         }
         wallCollider.enabled = true;
-        audioSource.Play();
+        if(!firstSet)
+            audioSource.Play();
+        else
+            firstSet = false;
     }
 
     public void LowerWall(){
@@ -104,7 +111,10 @@ public class WallTrap : MonoBehaviour
         wallRaised = false;
         canLowerWall = false;
         wallCollider.enabled = false;
-        audioSource.Play();
+        if(!firstSet)
+            audioSource.Play();
+        else
+            firstSet = false;
     }
 
 
