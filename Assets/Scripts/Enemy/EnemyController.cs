@@ -72,8 +72,10 @@ public class EnemyController : MonoBehaviour
     }
 
     public void Respawn(){
-        transform.position = enemySpawn.position;
+        monster.Warp(enemySpawn.position);
+        //transform.position = enemySpawn.position;
         monster.ResetPath();
+        
     }
 
 }
