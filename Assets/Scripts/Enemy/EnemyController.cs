@@ -15,12 +15,16 @@ public class EnemyController : MonoBehaviour
     public float playerDistance;
     public bool canMove = true;
     [SerializeField] private Transform enemySpawn;
+    public Transform trapPos;
+    public bool moveToTrap = false;
+    private bool trapPosSet = false;
     
 
     private void Start()
     {
         monster = GetComponent<NavMeshAgent>();
     }
+
 
     void FixedUpdate()
     {
@@ -30,11 +34,30 @@ public class EnemyController : MonoBehaviour
                 hasLineOfSight = ray.collider.CompareTag("Player");
                 if (hasLineOfSight)
                 {
+                    if(moveToTrap){
+                        monster.speed = 2.5f;
+                        monster.angularSpeed = 120;
+                        moveToTrap = false;
+                    }
                     monster.SetDestination(player.transform.position);
                 }
             }
 
-            if (!monster.hasPath)
+            if(moveToTrap){
+                if(!trapPosSet){
+                    monster.SetDestination(trapPos.position);
+                    monster.speed = 7;
+                    monster.angularSpeed = 500;
+                    trapPosSet = true;
+                }
+                float trapDist = Vector3.Distance(transform.position, trapPos.position);
+                if(trapDist <= 2){
+                    monster.speed = 2.5f;
+                    monster.angularSpeed = 120;
+                    moveToTrap = false;
+                }
+            }
+            else if (!monster.hasPath)
             {
                 Vector3 min = bounds.min.position;
                 Vector3 max = bounds.max.position;
