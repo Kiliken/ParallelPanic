@@ -11,7 +11,7 @@ public class TrapManager : MonoBehaviour
     {
         trapPairCount = transform.childCount;
         for(int i = 0; i < trapPairCount; i++){
-            transform.GetChild(i).GetComponent<TrapPair>().TrapType = 0; // set to random later
+            transform.GetChild(i).GetComponent<TrapPair>().TrapType = Random.Range(0, 2); // set to random later
         }
         
     }

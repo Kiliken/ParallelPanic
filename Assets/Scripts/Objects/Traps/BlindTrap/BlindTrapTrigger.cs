@@ -23,6 +23,8 @@ public class BlindTrapTrigger : MonoBehaviour
     private float lowerTimer = 0f;
     private bool trapOnSide = false;
 
+    public bool smokeOn = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -94,6 +96,7 @@ public class BlindTrapTrigger : MonoBehaviour
     {
         blindTrap.transform.localPosition = new Vector3(blindTrap.transform.localPosition.x, trapLoweredHeight, blindTrap.transform.localPosition.z);
         trapOnSide = true;
+        smokeOn = true;
         //trapRising = true;
     }
 
@@ -140,6 +143,7 @@ public class BlindTrapTrigger : MonoBehaviour
             {
                 trapRising = true;
                 trapOnSide = false;
+                
             }
             else if (trapRaised && canLowerTrap)
             {
