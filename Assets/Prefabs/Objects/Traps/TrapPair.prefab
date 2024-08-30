@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slowTrapPrefab: {fileID: 2753415265047224767, guid: 7d70bf6a7db4142a7a7aa34ac30addec, type: 3}
-  alarmTrapPrefab: {fileID: 0}
+  alarmTrapPrefab: {fileID: 6592907798356483230, guid: eb183346f6c7cb24292faa26317382b3, type: 3}
   darkTrapPrefab: {fileID: 0}
   trapA: {fileID: 0}
   trapB: {fileID: 0}

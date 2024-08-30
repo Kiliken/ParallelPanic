@@ -21,11 +21,10 @@ public class TrapPair : MonoBehaviour
                 SetSlowTrap();
                 break;
             case 1:
-                    //SetAlarmTrap(); remember to switch
-                    SetDarkTrap();
-                    break;
+                SetAlarmTrap();
+                break;
             case 2:
-                //SetDarkTrap();
+                SetDarkTrap();
                 break;
         }
         trapType = value;
@@ -66,7 +65,23 @@ public class TrapPair : MonoBehaviour
     }
 
     private void SetAlarmTrap(){
-        
+        trapA = Instantiate(alarmTrapPrefab, posA.transform.localPosition, Quaternion.identity);
+        trapB = Instantiate(alarmTrapPrefab, posB.transform.localPosition, Quaternion.identity);
+        trapA.transform.parent = posA.transform;
+        trapB.transform.parent = posB.transform;
+        trapA.name = "AlarmTrapA";
+        trapB.name = "AlarmTrapB";
+
+        trapA.GetComponent<AlarmTrapTrigger>().otherTrap = trapB.GetComponent<AlarmTrapTrigger>();
+        trapB.GetComponent<AlarmTrapTrigger>().otherTrap = trapA.GetComponent<AlarmTrapTrigger>();
+        if(Random.Range(0, 2) == 0){
+            trapA.GetComponent<AlarmTrapTrigger>().LowerTrap();
+            trapB.GetComponent<AlarmTrapTrigger>().SetTrap();
+        }
+        else{
+            trapB.GetComponent<AlarmTrapTrigger>().LowerTrap();
+            trapA.GetComponent<AlarmTrapTrigger>().SetTrap();
+        }
     }
 
     private void SetDarkTrap(){

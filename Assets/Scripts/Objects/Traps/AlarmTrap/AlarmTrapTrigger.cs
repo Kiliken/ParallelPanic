@@ -5,7 +5,7 @@ using UnityEngine;
 public class AlarmTrapTrigger : MonoBehaviour
 {
     public GameObject alarmTrap;
-    public FloorTrapTrigger otherTrap;
+    public AlarmTrapTrigger otherTrap;
     public Mesh activeMesh;
     public Mesh inactiveMesh;
     GameObject player;
@@ -16,17 +16,21 @@ public class AlarmTrapTrigger : MonoBehaviour
     private bool trapRising = false;
     private bool trapLowering = false;
     private float trapMoveSpeed = 5f;
-    private float trapRaisedHeight = 0f;
+    private float trapRaisedHeight = -0.03f;
     private float trapLoweredHeight = -0.5f;
     private bool canLowerTrap = false;
     private float lowerTime = 5f;
     private float lowerTimer = 0f;
     private bool trapOnSide = false;
     [SerializeField] private EnemyController enemy;
+    AudioSource audioSource;
+
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         // if(mainTrap){
         //     setRandom();
         // }
@@ -65,7 +69,10 @@ public class AlarmTrapTrigger : MonoBehaviour
                 alarmTrap.GetComponent<MeshFilter>().mesh = inactiveMesh;
                 trapRaised = true;
                 trapRising = false;
-                //play sfx
+                audioSource.Play();
+                enemy.trapPos = gameObject.transform;
+                enemy.trapPosSet = false;
+                enemy.moveToTrap = true;
             }
         }
         else if(trapLowering){
@@ -97,6 +104,14 @@ public class AlarmTrapTrigger : MonoBehaviour
         trapLowering = true;
         trapRaised = false;
         canLowerTrap = false;
+        if(enemy == null){
+            if(gameObject.name == "AlarmTrapA"){
+                enemy = GameObject.Find("Enemy1").GetComponent<EnemyController>();
+            }
+            else{
+                enemy = GameObject.Find("Enemy2").GetComponent<EnemyController>();
+            }
+        }
     }
 
 

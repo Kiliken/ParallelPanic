@@ -17,7 +17,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Transform enemySpawn;
     public Transform trapPos;
     public bool moveToTrap = false;
-    private bool trapPosSet = false;
+    public bool trapPosSet = false;
     
 
     private void Start()
