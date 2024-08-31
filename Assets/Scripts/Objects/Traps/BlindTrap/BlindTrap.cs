@@ -6,6 +6,7 @@ public class BlindTrap : MonoBehaviour
 {
     GameObject smokeScreen;
     BlindTrapTrigger mainTrap;
+    PlayerController player;
     float timer = 0f;
 
     private void Start()
@@ -18,10 +19,12 @@ public class BlindTrap : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            player = other.GetComponent<PlayerController>();
             if (smokeScreen.activeSelf != true && mainTrap.smokeOn)
             {
                 timer = 0;
                 smokeScreen.SetActive(true);
+                player.SmokeScreen(true);
                 mainTrap.smokeOn = false;
             }
         }
@@ -35,6 +38,7 @@ public class BlindTrap : MonoBehaviour
             if (timer > 8)
             {
                 smokeScreen.SetActive (false);
+                player.SmokeScreen(false);
             }
         }
     }

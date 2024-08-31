@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Transform playerSpawn;
     [SerializeField] private AudioSource footStepAudio;
+    [SerializeField] private ParticleSystem smokeScreen;
 
     void Start()
     {
@@ -107,5 +108,18 @@ public class PlayerController : MonoBehaviour
 
     public void Respawn(){
         transform.position = playerSpawn.position;
+        smokeScreen.Stop();
+        smokeScreen.Clear();
+    }
+
+    public void SmokeScreen(bool status) {
+        if (status)
+        {
+            smokeScreen.Play();
+        }
+        else 
+        { 
+            smokeScreen.Stop();
+        }
     }
 }
