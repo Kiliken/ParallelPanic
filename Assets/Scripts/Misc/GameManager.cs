@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        pauseMenu.GetComponent<PauseMenu>().gameManager = this.GetComponent<GameManager>();
         pauseMenu.SetActive(false);
         
     }
