@@ -8,11 +8,16 @@ public class TitleScript : MonoBehaviour
 {
     private void Start()
     {
-        Cursor.visible = false;
+        //Cursor.visible = false;
     }
-    public Button start;
+
+
     // Start is called before the first frame update
     public void LoadGame() {
-        SceneManager.LoadScene("TestLevel");
+        SceneManager.LoadScene("FinalLevel");
+    }
+
+    public void QuitGame(){
+        Application.Quit();
     }
 }
