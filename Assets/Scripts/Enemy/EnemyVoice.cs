@@ -24,7 +24,7 @@ public class EnemyVoice : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playingVoice){
+        if(playingVoice && !GameManager.gamePaused && SettingsMenu.sfx_on){
             float dist = enemyController.playerDistance;
             if(dist > maxAudioDist/2){
                 voiceVolume = (float)System.Math.Round((maxAudioDist - dist)/maxAudioDist * 0.4, 2);

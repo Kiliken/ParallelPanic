@@ -25,7 +25,8 @@ public class EnemyHitBox : MonoBehaviour
         if (other.tag == "Player")
         {
             screenFade.FadeOut(true);
-            audioSource.Play();
+            if(SettingsMenu.sfx_on)
+                audioSource.Play();
             GameObject dp = Instantiate(deathParticle, playerParticle.transform.position, deathParticle.transform.rotation);
             Destroy(dp, 1f);
             // other.transform.position = playerSpawn.position;

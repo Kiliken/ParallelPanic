@@ -22,6 +22,7 @@ public class FloorTrapTrigger : MonoBehaviour
     private float lowerTime = 5f;
     private float lowerTimer = 0f;
     private bool trapOnSide = false;
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,7 @@ public class FloorTrapTrigger : MonoBehaviour
         // if(mainTrap){
         //     setRandom();
         // }
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -110,6 +112,9 @@ public class FloorTrapTrigger : MonoBehaviour
                 collidingPlayer2 = true;
             }
             player = other.gameObject;
+            if(trapRaised && SettingsMenu.sfx_on){
+                audioSource.Play();
+            }
         }
     }
 
@@ -118,6 +123,8 @@ public class FloorTrapTrigger : MonoBehaviour
             if(!trapRaised && trapOnSide){
                 trapRising = true;
                 trapOnSide = false;
+                if(SettingsMenu.sfx_on)
+                    audioSource.Play();
             }
             else if(trapRaised && canLowerTrap){
                 other.gameObject.GetComponent<Player>().canInteract = true;

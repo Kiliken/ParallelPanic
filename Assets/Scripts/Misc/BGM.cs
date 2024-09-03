@@ -21,12 +21,26 @@ public class BGM : MonoBehaviour
         }
     }
 
-
-  public void StopMusic(){
-    if (audioSource.isPlaying)
-    {
-        audioSource.Stop();
+    public void PauseMusic(){
+        if (!audioSource.isPlaying)
+        {
+            audioSource.Pause();
+        }
     }
-  }
+
+    public void UnpauseMusic(){
+        if (!audioSource.isPlaying)
+        {
+            audioSource.UnPause();
+        }
+    }
+
+
+    public void StopMusic(){
+        if (audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
+    }
 
 }

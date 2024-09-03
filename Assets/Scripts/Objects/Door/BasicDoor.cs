@@ -30,7 +30,8 @@ public class BasicDoor : MonoBehaviour
                 //doorColl.enabled = true;
                 open = false;
                 // door sfx
-                audioSource.Play();
+                if(SettingsMenu.sfx_on)
+                    audioSource.Play();
             }
             else if (((Input.GetButtonDown("Player1Inter") && collidingPlayer1) || (Input.GetButtonDown("Player2Inter") && collidingPlayer2)) && open == false)
             {
@@ -39,7 +40,8 @@ public class BasicDoor : MonoBehaviour
                 //doorColl.enabled = false;
                 open = true;
                 // door sfx
-                audioSource.Play();
+                if(SettingsMenu.sfx_on)
+                    audioSource.Play();
             }
         }
     }

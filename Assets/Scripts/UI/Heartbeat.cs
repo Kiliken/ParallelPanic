@@ -27,6 +27,7 @@ public class Heartbeat : MonoBehaviour
     }
 
     public void PlaySFX(){
-        audioSource.Play();
+        if(SettingsMenu.sfx_on)
+            audioSource.Play();
     }
 }

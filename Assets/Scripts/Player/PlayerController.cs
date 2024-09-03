@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
         if (moveDirection != Vector3.zero)
         {
             RotatePlayer();
-            if(!footStepAudio.isPlaying){
+            if(!footStepAudio.isPlaying && SettingsMenu.sfx_on){
                 footStepAudio.Play();
             }
         }

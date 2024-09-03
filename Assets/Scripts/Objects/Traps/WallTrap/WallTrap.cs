@@ -100,7 +100,7 @@ public class WallTrap : MonoBehaviour
             }
         }
         wallCollider.enabled = true;
-        if(!firstSet)
+        if(!firstSet && SettingsMenu.sfx_on)
             audioSource.Play();
         else
             firstSet = false;
@@ -111,7 +111,7 @@ public class WallTrap : MonoBehaviour
         wallRaised = false;
         canLowerWall = false;
         wallCollider.enabled = false;
-        if(!firstSet)
+        if(!firstSet && SettingsMenu.sfx_on)
             audioSource.Play();
         else
             firstSet = false;

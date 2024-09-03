@@ -22,8 +22,9 @@ public class BlindTrapTrigger : MonoBehaviour
     private float lowerTime = 5f;
     private float lowerTimer = 0f;
     private bool trapOnSide = false;
-
     public bool smokeOn = true;
+    AudioSource audioSource;
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,8 @@ public class BlindTrapTrigger : MonoBehaviour
         // if(mainTrap){
         //     setRandom();
         // }
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -143,7 +146,8 @@ public class BlindTrapTrigger : MonoBehaviour
             {
                 trapRising = true;
                 trapOnSide = false;
-                
+                if(SettingsMenu.sfx_on)
+                    audioSource.Play();
             }
             else if (trapRaised && canLowerTrap)
             {

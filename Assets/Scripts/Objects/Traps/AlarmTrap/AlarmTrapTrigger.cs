@@ -69,7 +69,8 @@ public class AlarmTrapTrigger : MonoBehaviour
                 alarmTrap.GetComponent<MeshFilter>().mesh = inactiveMesh;
                 trapRaised = true;
                 trapRising = false;
-                audioSource.Play();
+                if(SettingsMenu.sfx_on)
+                    audioSource.Play();
                 enemy.trapPos = gameObject.transform;
                 enemy.trapPosSet = false;
                 enemy.moveToTrap = true;
@@ -135,6 +136,7 @@ public class AlarmTrapTrigger : MonoBehaviour
                 collidingPlayer2 = true;
             }
             player = other.gameObject;
+            //Debug.Log("player entered");
         }
     }
 

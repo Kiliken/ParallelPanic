@@ -65,13 +65,15 @@ public class Chest : MonoBehaviour
                             key.SetActive(true);
                             // KEY SFX
                             audioSource.clip = chestSFX[0];
-                            audioSource.Play();
+                            if(SettingsMenu.sfx_on)
+                                audioSource.Play();
                         }
                     }
                     if(chestType == 2){
                         // WARP SFX
                         audioSource.clip = chestSFX[1];
-                        audioSource.Play();
+                        if(SettingsMenu.sfx_on)
+                            audioSource.Play();
                     }
                     player.canInteract = false;
                     opened = true;
