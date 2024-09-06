@@ -12,10 +12,11 @@ public class MainDoor : MonoBehaviour
     bool collidingPlayer1 = false;
     bool collidingPlayer2 = false;
     Player player;
+    AudioSource audioSource;
 
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -23,14 +24,7 @@ public class MainDoor : MonoBehaviour
     void Update()
     {
         if(!GameManager.gamePaused){
-            if (((Input.GetButtonDown("Player1Inter") && collidingPlayer1) || (Input.GetButtonDown("Player2Inter") && collidingPlayer2)) && open == true)
-            {
-                //Close Door
-                doorAnim.SetBool("open", false);
-                doorColl.enabled = true;
-                open = false;
-            }
-            else if (((Input.GetButtonDown("Player1Inter") && collidingPlayer1) || (Input.GetButtonDown("Player2Inter") && collidingPlayer2)) && open == false)
+            if (((Input.GetButtonDown("Player1Inter") && collidingPlayer1) || (Input.GetButtonDown("Player2Inter") && collidingPlayer2)) && open == false)
             {
                 if (player.holdingKey && !unlocked)
                 {
@@ -39,13 +33,10 @@ public class MainDoor : MonoBehaviour
                     open = true;
                     unlocked = true;
                     player.holdingKey = false;
+                    if (SettingsMenu.sfx_on)
+                        audioSource.Play();
                 }
-                else if (unlocked)
-                {
-                    doorAnim.SetBool("open", true);
-                    doorColl.enabled = false;
-                    open = true;
-                }
+                
             }
         }
     }
