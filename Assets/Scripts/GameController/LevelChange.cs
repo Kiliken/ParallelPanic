@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class LevelChange : MonoBehaviour
@@ -13,6 +14,7 @@ public class LevelChange : MonoBehaviour
     [SerializeField] Transform newEnemySpawn;
 
     [Header("Other")]
+    [SerializeField] TextMeshProUGUI roomNo;
     [SerializeField] Animator doorAnim;
     [SerializeField] AudioSource audioSource;
     bool active;
@@ -27,6 +29,8 @@ public class LevelChange : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && active)
         {
             active = false;
+            other.gameObject.GetComponent<Player>().currentRoomNo += 1;
+            roomNo.text = "ROOM " + other.gameObject.GetComponent<Player>().currentRoomNo;
             doorAnim.SetBool("open", false);
             if (SettingsMenu.sfx_on)
                 audioSource.Play();

@@ -14,6 +14,10 @@ public class MainDoor : MonoBehaviour
     Player player;
     AudioSource audioSource;
 
+    public bool lastDoor = false;
+    public ScreenFadeController screenFade1;
+    public ScreenFadeController screenFade2;
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -35,6 +39,20 @@ public class MainDoor : MonoBehaviour
                     player.holdingKey = false;
                     if (SettingsMenu.sfx_on)
                         audioSource.Play();
+                    
+                    if(lastDoor){
+                        if(GameManager.winner == 0){
+                            if(collidingPlayer1){
+                                GameManager.winner = 1;
+                            }
+                            else{
+                                GameManager.winner = 2;
+                            }
+                            screenFade1.FadeOutMenu();
+                            screenFade2.FadeOutMenu();
+                        }
+                        
+                    }
                 }
                 
             }

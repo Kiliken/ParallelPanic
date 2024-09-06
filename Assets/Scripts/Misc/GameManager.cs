@@ -6,15 +6,18 @@ public class GameManager : MonoBehaviour
 {
     public GameObject pauseMenu;
     public GameObject settingsMenu;
+    public GameObject winScreens;
     AudioSource audioSource;
     public AudioSource bgm;
     public AudioSource Enemy1Voice;
     public AudioSource Enemy2Voice;
     public static bool gamePaused = false;
+    public static int winner = 0;
 
     void Awake(){
         pauseMenu.GetComponent<PauseMenu>().gameManager = this.GetComponent<GameManager>();
         settingsMenu.GetComponent<SettingsMenu>().gameManager = this.GetComponent<GameManager>();
+        winScreens.GetComponent<WinScreenScript>().gameManager = this.GetComponent<GameManager>();
     }
 
     // Start is called before the first frame update
@@ -23,6 +26,7 @@ public class GameManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
+        winScreens.SetActive(false);
         
     }
 

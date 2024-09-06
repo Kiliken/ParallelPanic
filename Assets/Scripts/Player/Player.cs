@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     public bool holdingKey = false;
     public bool canInteract = false;
+    public int currentRoomNo = 1;
 
     [Header("UI")]
     public Image ButtonA;

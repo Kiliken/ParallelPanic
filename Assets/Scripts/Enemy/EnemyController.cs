@@ -89,7 +89,6 @@ public class EnemyController : MonoBehaviour
                 }*/
             }
         }
-        
         playerDistance = Vector3.Distance(transform.position, player.transform.position);
         //Debug.Log(System.Math.Round((31 - playerDistance)/31, 2));
     }

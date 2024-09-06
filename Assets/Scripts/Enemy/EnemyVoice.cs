@@ -38,6 +38,9 @@ public class EnemyVoice : MonoBehaviour
                 PlayRandomVoice();
             }
         }
+        if(!enemyController.canMove && playingVoice){
+            playingVoice = false;
+        }
         
     }
 
