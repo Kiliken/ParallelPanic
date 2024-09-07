@@ -262,6 +262,9 @@ MonoBehaviour:
   playerDistance: 0
   canMove: 1
   enemySpawn: {fileID: 0}
+  trapPos: {fileID: 0}
+  moveToTrap: 0
+  trapPosSet: 0
 --- !u!1 &7580705052492792720
 GameObject:
   m_ObjectHideFlags: 0
