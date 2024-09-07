@@ -37,6 +37,8 @@ public class PauseMenu : MonoBehaviour
     }
     
     public void LoadTitle(){
+        GameManager.gamePaused = false;
+        Time.timeScale = 1;
         SceneManager.LoadScene("Title");
     }
 
