@@ -14,6 +14,7 @@ public class SettingsMenu : MonoBehaviour
     public TextMeshProUGUI ppBtnText;
     public AudioSource bgm;
     public GameObject postProcessing;
+    [SerializeField] private JsonSettings jSettings;
 
     public static bool sfx_on = true;
     public static bool music_on = true;
@@ -27,6 +28,15 @@ public class SettingsMenu : MonoBehaviour
         transform.GetChild(5).GetComponent<ButtonScript>().audioSource = gameManager.gameObject.GetComponent<AudioSource>();
         transform.GetChild(6).GetComponent<ButtonScript>().audioSource = gameManager.gameObject.GetComponent<AudioSource>();
         transform.GetChild(7).GetComponent<ButtonScript>().audioSource = gameManager.gameObject.GetComponent<AudioSource>();
+
+        /* Here's the json loader
+        if (jSettings.Load())
+        {
+            sfx_on = jSettings.settings.sfx;
+            music_on = jSettings.settings.music;
+            pp_on = jSettings.settings.pp;
+        }
+        */
     }
 
     // Update is called once per frame
@@ -67,6 +77,7 @@ public class SettingsMenu : MonoBehaviour
     }
 
     public void ReturnToPause(){
+        jSettings.Save(sfx_on, music_on, pp_on);
         pauseMenu.SetActive(true);
         this.gameObject.SetActive(false);
     }
