@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
             if(!gamePaused){
                 PauseGame();
             }
-            else{
+            else if(gamePaused && pauseMenu.activeSelf){
                 ResumeGame();
             }
 

@@ -29,14 +29,19 @@ public class SettingsMenu : MonoBehaviour
         transform.GetChild(6).GetComponent<ButtonScript>().audioSource = gameManager.gameObject.GetComponent<AudioSource>();
         transform.GetChild(7).GetComponent<ButtonScript>().audioSource = gameManager.gameObject.GetComponent<AudioSource>();
 
-        /* Here's the json loader
+        // Here's the json loader
         if (jSettings.Load())
         {
-            sfx_on = jSettings.settings.sfx;
-            music_on = jSettings.settings.music;
-            pp_on = jSettings.settings.pp;
+            if(!jSettings.settings.sfx){
+                SfxOnOff();
+            }
+            if(!jSettings.settings.music){
+                MusicOnOff();
+            }
+            if(!jSettings.settings.pp){
+                PpOnOff();
+            }
         }
-        */
     }
 
     // Update is called once per frame
