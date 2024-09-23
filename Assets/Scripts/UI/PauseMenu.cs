@@ -9,12 +9,16 @@ public class PauseMenu : MonoBehaviour
 {
     public GameManager gameManager;
     public GameObject settingsMenu;
+    public GameObject HTPscreen;
+
+
     // Start is called before the first frame update
     void Start()
     {
         transform.GetChild(1).GetComponent<ButtonScript>().audioSource = gameManager.gameObject.GetComponent<AudioSource>();
         transform.GetChild(2).GetComponent<ButtonScript>().audioSource = gameManager.gameObject.GetComponent<AudioSource>();
         transform.GetChild(3).GetComponent<ButtonScript>().audioSource = gameManager.gameObject.GetComponent<AudioSource>();
+        transform.GetChild(4).GetComponent<ButtonScript>().audioSource = gameManager.gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -33,6 +37,12 @@ public class PauseMenu : MonoBehaviour
     public void OpenSettings(){
         // set active to panel
         settingsMenu.SetActive(true);
+        this.gameObject.SetActive(false);
+    }
+
+    public void OpenHTP(){
+        // set active to panel
+        HTPscreen.SetActive(true);
         this.gameObject.SetActive(false);
     }
     

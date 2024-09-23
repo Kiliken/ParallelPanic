@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject pauseMenu;
     public GameObject settingsMenu;
+    public GameObject HTPscreen;
     public GameObject winScreens;
     AudioSource audioSource;
     public AudioSource bgm;
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
     void Awake(){
         pauseMenu.GetComponent<PauseMenu>().gameManager = this.GetComponent<GameManager>();
         settingsMenu.GetComponent<SettingsMenu>().gameManager = this.GetComponent<GameManager>();
+        HTPscreen.GetComponent<HTPScreen>().gameManager = this.GetComponent<GameManager>();
         winScreens.GetComponent<WinScreenScript>().gameManager = this.GetComponent<GameManager>();
     }
 
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
+        HTPscreen.SetActive(false);
         winScreens.SetActive(false);
         
     }
