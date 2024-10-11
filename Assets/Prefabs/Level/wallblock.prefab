@@ -80,7 +80,7 @@ LODGroup:
   - screenRelativeHeight: 0.007611111
     fadeTransitionWidth: 0
     renderers: []
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!1001 &6079360893326732508
 PrefabInstance:
   m_ObjectHideFlags: 0
